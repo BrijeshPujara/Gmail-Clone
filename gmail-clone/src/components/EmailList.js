@@ -8,11 +8,12 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import KeyboardHideIcon from "@mui/icons-material/KeyboardHide";
-import SettingsIcon from "@mui/icons-material/Settings"
-import InboxIcon from '@mui/icons-material/Inbox';
-import PeopleIcon from '@mui/icons-material/People';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import SettingsIcon from "@mui/icons-material/Settings";
+import InboxIcon from "@mui/icons-material/Inbox";
+import PeopleIcon from "@mui/icons-material/People";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import Section from "./Section";
+import EmailRow from "./EmailRow";
 
 function EmailList() {
   return (
@@ -47,11 +48,27 @@ function EmailList() {
           </IconButton>
         </div>
       </div>
-          <div className="emailList-sections">
-              <Section Icon = {InboxIcon} title = 'Primary' color = '#d93025' selected />
-              <Section Icon = {PeopleIcon} title = 'Social' color = 'blue'  />
-              <Section Icon = {LocalOfferIcon} title = 'Promotions' color = 'green'  />
-      </div>
+      <div className="emailList-sections">
+        <Section Icon={InboxIcon} title="Primary" color="#d93025" selected />
+        <Section Icon={PeopleIcon} title="Social" color="blue" />
+        <Section Icon={LocalOfferIcon} title="Promotions" color="green" />
+          </div>
+          
+          <div className="emailList-list">
+              <EmailRow
+                  title="Twiiter"
+                  subject="Arsenal football club has followed you"
+                  description="This is a test"
+                  time="7pm"
+              />
+              <EmailRow
+                  title="Twiiter"
+                  subject="Arsenal football club has followed you"
+                  description="This is a test"
+                  time="7pm"
+              />
+              
+          </div>
     </div>
   );
 }
