@@ -25,11 +25,12 @@ function SendMail() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          {...register("to", { required: true })}
+          {...register("to", { required: true })} //v7 react-hook-form
           placeholder="To"
           type="text"
         />
-        {errors.to && (<p className="sendMail-error">To is required!</p>)}
+        {errors.to && (<p className="sendMail-error">To is required!</p>)} 
+        
 
         <input
           {...register("subject", { required: true })}
