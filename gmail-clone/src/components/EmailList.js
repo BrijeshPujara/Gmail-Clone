@@ -56,7 +56,7 @@ function EmailList() {
           
           <div className="emailList-list">
               <EmailRow
-                  title="Twiiter"
+                  title="Twitter"
                   subject="Arsenal football club has followed you"
                   description="This is a test"
                   time="7pm"
