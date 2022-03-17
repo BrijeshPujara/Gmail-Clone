@@ -29,8 +29,7 @@ function SendMail() {
           placeholder="To"
           type="text"
         />
-        {errors.to && (<p className="sendMail-error">To is required!</p>)} 
-        
+        {errors.to && <p className="sendMail-error">To is required!</p>}
 
         <input
           {...register("subject", { required: true })}
