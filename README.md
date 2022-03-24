@@ -12,10 +12,10 @@ Firebase Hosting - https://clone-10820.web.app/
 
 ```
 # Clone this repository
-$ git clone https://github.com/BrijeshPujara/LinkedIn-Clone.git
+$ git clone https://github.com/BrijeshPujara/gmail-clone.git
 
 # Go into the repository
-$ cd my-app
+$ cd gmail-clone
 
 # Remove current origin repository
 $ git remote remove origin
