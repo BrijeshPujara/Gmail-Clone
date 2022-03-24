@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./EmailList.css";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { IconButton } from "@mui/material";
@@ -14,8 +14,24 @@ import PeopleIcon from "@mui/icons-material/People";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import Section from "./Section";
 import EmailRow from "./EmailRow";
+import { db } from "../firebase";
 
 function EmailList() {
+  const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    db.collection("emails")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setEmails(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
+
   return (
     <div className="emailList">
       <div className="emailList-icons">
@@ -52,23 +68,32 @@ function EmailList() {
         <Section Icon={InboxIcon} title="Primary" color="#d93025" selected />
         <Section Icon={PeopleIcon} title="Social" color="blue" />
         <Section Icon={LocalOfferIcon} title="Promotions" color="green" />
-          </div>
-          
-          <div className="emailList-list">
-              <EmailRow
-                  title="Twitter"
-                  subject="Arsenal football club has followed you"
-                  description="This is a test"
-                  time="7pm"
-              />
-              <EmailRow
-                  title="Twiiter"
-                  subject="Arsenal football club has followed you"
-                  description="This is a test"
-                  time="7pm"
-              />
-              
-          </div>
+      </div>
+
+      <div className="emailList-list">
+        {emails.map(({ id, data: { to, subject, message, timestamp } }) => (
+          <EmailRow
+            id={id}
+            key={id}
+            title={to}
+            subject={subject}
+            description={message}
+            time={new Date(timestamp?.seconds * 1000).toUTCString()}
+          />
+        ))}
+        <EmailRow
+          title="Twitter"
+          subject="Arsenal football club has followed you"
+          description="This is a test"
+          time="7pm"
+        />
+        <EmailRow
+          title="Twiiter"
+          subject="Arsenal football club has followed you"
+          description="This is a test"
+          time="7pm"
+        />
+      </div>
     </div>
   );
 }
